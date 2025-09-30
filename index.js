@@ -18,7 +18,7 @@ const app =express();
 
 
 app.use(cors({ 
-  origin: "https://human-resource-frontend-im8m.vercel.app/", 
+  origin: "https://human-resource-frontend-im8m.vercel.app", 
   credentials: true 
 }));
 app.use(express.json());
