@@ -2,17 +2,16 @@ import Employee from "../models/Employee.js";
 import User from "../models/User.js";
 import bcrypt from 'bcrypt';
 import multer from "multer";
-import path from "path";
+import {CloudinaryStorage} from 'multer-storage-cloudinary';
+import cloudinary from "../cloudinary.js";
 
-
-const storage = multer.diskStorage({
-    destination:(req , file ,cb) =>{
-        cb(null , "public/uploads/")
-    },
-    filename:(req,file,cb) =>{
-        cb(null , Date.now() + path.extname(file.originalname))
-    }
-})
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "hr-app", // folder name in cloudinary
+    allowed_formats: ["jpg", "png", "jpeg"],
+  },
+});
 
 const upload  = multer({storage:storage});
 const addEmployee = async(req, res)=>{
