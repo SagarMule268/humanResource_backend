@@ -25,8 +25,7 @@ const addSalary = async (req, res)=>{
      await newsalary.save();
      res.status(200).json({success:true})
    } catch (error) {
-        console.log(error.message)
-     res.status(500).json({success:false , message :error.message})
+     res.status(500).json({success:false , error :error.message})
     
    }
 
@@ -49,7 +48,6 @@ const getSalary = async (req, res) => {
      res.status(200).json({success:true , salary:salary})
 
   } catch (error) {
-    console.log(error);
      res.status(500).json({success:false , error:error.message})
 
   }

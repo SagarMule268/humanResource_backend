@@ -36,7 +36,6 @@ const getSummary = async (req, res) => {
             leaveSummary
         })
     } catch (error) {
-        console.log(error)
         return res.status(500).json({success:false , error:error.message})
     }
 }

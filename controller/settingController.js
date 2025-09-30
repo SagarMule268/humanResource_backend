@@ -28,7 +28,6 @@ const updatePassword = async (req, res) => {
 
     return res.status(200).json({ success: true, message: "Password updated successfully" });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ success: false, error: error.message });
   }
 };

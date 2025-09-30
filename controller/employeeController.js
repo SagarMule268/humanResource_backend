@@ -133,7 +133,6 @@ const fechDepartmentByDepId = async(req, res) =>{
         const employees = await Employee.find({department:id}).populate("userId",{password:0});
         return res.status(200).json({success:true , employees:employees});
     } catch (error) {
-        console.log(error.message);
         return res.status(500).json({success:false , message:error.message})
     }
 }

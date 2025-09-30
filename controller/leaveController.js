@@ -1,7 +1,7 @@
 import path from "path";
 import Employee from "../models/Employee.js";
 import Leave from "../models/Leave.js";
-import { error } from "console";
+
 const addLeave = async(req, res)=>{
    try {
      const {
@@ -25,7 +25,6 @@ const addLeave = async(req, res)=>{
      await leave.save();
      return res.status(201).json({success:true , message:"Leave Added Succesfully !"});
    } catch (error) {
-    console.log( "error from the leave Controller :", error.message);
      return res.status(500).json({success:false , error:error.message});
 
    }
@@ -35,7 +34,6 @@ const addLeave = async(req, res)=>{
 const getLeaveId= async (req, res) => {
     try {
         const {id} =req.params ;
-        console.log("Id received",id);
         let leaves ;
          leaves = await Leave.find({userId:id}).populate("employeeId","employeeId");
         if(!leaves || leaves.length === 0) {
@@ -43,7 +41,6 @@ const getLeaveId= async (req, res) => {
         }
         return res.status(200).json({success:true , leaves:leaves})
     } catch (error) {
-        console.log(error.message);
         return res.status(500).json({success:false , error :error.message})
     }
 }
@@ -109,7 +106,6 @@ const leaveUpdate =async (req,res) => {
         if(!leave) return res.status(404).json({success:false , error:"Levae Details not Found"});
         return res.status(200).json({success:true })
     } catch (error) {
-        console.log(error)
         return res.status(500).json({success:false , error:error.message })
         
     }
